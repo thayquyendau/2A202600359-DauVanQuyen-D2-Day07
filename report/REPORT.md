@@ -217,7 +217,7 @@ Chạy 5 benchmark queries của nhóm trên implementation cá nhân của bạ
 ## 7. What I Learned (5 điểm — Demo)
 
 **Điều hay nhất tôi học được từ thành viên khác trong nhóm:**
-> Tôi học được từ Anh Đức cách kết hợp nhiều phương pháp chunking (Hybrid) để bắt được cả cấu trúc lẫn ngữ nghĩa văn bản luật. Từ Thành Đạt, tôi thấy Sliding Window + Overlap giữ context liên tục giữa các chunk rất tốt, tránh mất thông tin ở ranh giới. Còn Hoàng Việt cho thấy Semantic chunking nhóm câu theo ý nghĩa rất chính xác, dù cần embedder thật mới phát huy hết.
+> Tôi học được từ Anh Đức cách kết hợp Document-Structure với logic chia nhỏ (Hybrid) để giữ được tên Điều làm metadata rất chuẩn. Từ Thành Đạt, tôi thấy cách kết hợp Doc Parse + FixedSize giúp chunk lớn vừa đủ (~682 ký tự), bảo toàn ngữ cảnh tốt. Còn Hoàng Việt cho thấy Semantic chunking nhóm câu theo ý nghĩa rất linh hoạt, dù chunk count lớn (359).
 
 **Điều hay nhất tôi học được từ nhóm khác (qua demo):**
 > Các nhóm khác dùng `sentence-transformers` bản local cho kết quả retrieval hội tụ hơn hẳn `mock_embed` mặc định, dù tốn tài nguyên hơn nhưng rất đáng giá. Score phân tách giữa chunk đúng và sai rõ ràng hơn nhiều so với mock.
@@ -229,14 +229,15 @@ Chạy 5 benchmark queries của nhóm trên implementation cá nhân của bạ
 
 ## Tự Đánh Giá
 
-| Tiêu chí | Loại | Điểm tự đánh giá |
-|----------|------|-------------------|
-| Warm-up | Cá nhân | 4 / 5 |
-| Document selection | Nhóm | 8 / 10 |
-| Chunking strategy | Nhóm | 13 / 15 |
-| My approach | Cá nhân | 9 / 10 |
-| Similarity predictions | Cá nhân | 4 / 5 |
-| Results | Cá nhân | 9 / 10 |
-| Core implementation (tests) | Cá nhân | 28 / 30 |
-| Demo | Nhóm | 4 / 5 |
-| **Tổng** | | **79 / 100** |
+| Hạng mục | Loại | Điểm tối đa | Điểm tự đánh giá | Giải thích |
+|----------|------|-----------|-------------------|-----------|
+| Core Implementation (pytest) | Cá nhân | 30 | 30 | 42/42 tests passed |
+| My Approach | Cá nhân | 10 | 8 | Giải thích đủ các phần, nhưng chưa đi sâu edge case |
+| Competition Results | Cá nhân | 10 | 8 | 5/5 queries tìm đúng chunk, agent trả lời dựa trên context |
+| Warm-up | Cá nhân | 5 | 4 | Trả lời đủ cosine + chunking math, ví dụ rõ ràng |
+| Similarity Predictions | Cá nhân | 5 | 4 | 4/5 dự đoán đúng, Pair 5 bất ngờ nhưng có giải thích |
+| Strategy Design | Nhóm | 15 | 13 | Giải thích strategy + so sánh với baseline và 5 thành viên |
+| Document Set Quality | Nhóm | 10 | 8 | 9 file luật, metadata rõ, nhưng chưa có field `dieu_so` |
+| Retrieval Quality | Nhóm | 10 | 8 | 5/5 top-3 đúng, nhưng dùng mock embedder nên score thấp |
+| Demo | Nhóm | 5 | 4 | Trình bày strategy + so sánh, rút được bài học |
+| **Tổng** | | **100** | **87 / 100** | |
